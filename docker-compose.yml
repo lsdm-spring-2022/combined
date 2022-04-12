@@ -1,8 +1,19 @@
 version: '3.8'
 services:
-  frontend:
-    build: frontend
-  backend:
-    build: backend
-  database:
-    build: database
+  be:
+    container_name: backend
+    image: rafrdz/lsdm-backend:dev
+    env_file:
+      - ./.env
+    ports:
+      - 5001:5001
+  db:
+    container_name: database
+    image: rafrdz/lsdm-database:dev
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysqldb-data:/var/lib/mysql
