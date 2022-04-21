@@ -17,3 +17,8 @@ services:
       - 3306:3306
     volumes:
       - ./mysqldb-data:/var/lib/mysql
+  fe:
+    container_name: frontend
+    image: rafrdz/lsdm-frontend:dev
+    ports:
+      - 80:80
