@@ -2,14 +2,15 @@ version: '3.8'
 services:
   be:
     container_name: backend
-    image: rafrdz/lsdm-backend:dev
+    image: rafrdz/lsdm-backend:latest
+    restart: always
     env_file:
       - ./.env
     ports:
       - 5001:5001
   db:
     container_name: database
-    image: rafrdz/lsdm-database:dev
+    image: rafrdz/lsdm-database:latest
     restart: always
     env_file:
       - ./.env
@@ -19,12 +20,14 @@ services:
       - ./lsdm-data:/var/lib/mysql
   fe:
     container_name: frontend
-    image: rafrdz/lsdm-frontend:dev
+    image: rafrdz/lsdm-frontend:latest
+    restart: always
     ports:
       - 3000:3000
   nginx:
     container_name: nginx
     image: nginx
+    restart: always
     ports:
     - 443:443
     volumes:
